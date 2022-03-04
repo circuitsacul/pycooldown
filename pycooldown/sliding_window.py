@@ -26,6 +26,13 @@ from time import time
 
 
 class SlidingWindow:
+    """A sliding window implementation, based on discord.py's Cooldown class.
+
+    Args:
+        period (float): The period for the sliding window.
+        capacity (float): The capacity for the sliding window.
+    """
+
     # NOTE: This sliding window implementation was copied from the Cooldown
     # class in discord.py.
 
@@ -48,8 +55,18 @@ class SlidingWindow:
             tokens = self.capacity
         return tokens
 
-    def get_retry_after(self, current: float | None = None) -> float:
-        current = current or time()
+    def get_retry_after(self) -> float:
+        """Get the retry-after without triggering the cooldown.
+
+        Args:
+            current (float | None, optional): The current time. Defaults to
+            None.
+
+        Returns:
+            float: The retry-after, in seconds.
+        """
+
+        current = time()
         tokens = self.get_tokens(current)
 
         if tokens == 0:
@@ -57,8 +74,18 @@ class SlidingWindow:
 
         return 0.0
 
-    def update_rate_limit(self, current: float | None = None) -> float | None:
-        current = current or time()
+    def update_rate_limit(self) -> float | None:
+        """Trigger the cooldown if possible, otherwise return the retry-after.
+
+        Args:
+            current (float | None, optional): The current time. Defaults to
+            None.
+
+        Returns:
+            float | None: The retry-after, if any, else None.
+        """
+
+        current = time()
         self._last = current
 
         self._tokens = self.get_tokens(current)
@@ -76,5 +103,7 @@ class SlidingWindow:
         return None
 
     def reset(self) -> None:
+        """Reset the cooldown."""
+
         self._tokens = self.capacity
         self._last = 0.0

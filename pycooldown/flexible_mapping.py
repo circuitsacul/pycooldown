@@ -31,6 +31,13 @@ _K = TypeVar("_K")
 
 
 class FlexibleCooldown(Generic[_K]):
+    """A cooldown mapping where each key can have a different rate and capacity.
+
+    Args:
+        max_period (float): The maximum value for a cooldown. The smaller this
+        is, the less memory the mapping will use.
+    """
+
     def __init__(self, max_period: float) -> None:
         self.max_period = max_period
 
@@ -50,6 +57,22 @@ class FlexibleCooldown(Generic[_K]):
     def get_bucket(
         self, key: _K, period: float, capacity: float
     ) -> SlidingWindow:
+        """Get or create a cooldown for a key.
+
+        Args:
+            key (Any): The key for the cooldown.
+            period (float): The timespan to use for the cooldown.
+            capacity (float): The capacity to use for the cooldown.
+
+        Raises:
+            RuntimeError: You specified a period greater than max_period.
+            RuntimeError: You specified a period or capcity that didn't match
+            the existing cooldown's period or capacity.
+
+        Returns:
+            SlidingWindow: The cooldown for this key.
+        """
+
         if period > self.max_period:
             raise RuntimeError("The period must be less than max_period.")
 
@@ -78,9 +101,31 @@ class FlexibleCooldown(Generic[_K]):
     def get_retry_after(
         self, key: _K, period: float, capacity: float
     ) -> float:
+        """Get the current retry-after without triggering the cooldown.
+
+        Args:
+            key (Any): The key for the cooldown.
+            period (float): The period for the cooldown.
+            capacity (float): The capacity for the cooldown.
+
+        Returns:
+            float: The current retry-after in seconds.
+        """
+
         return self.get_bucket(key, period, capacity).get_retry_after()
 
     def update_rate_limit(
         self, key: _K, period: float, capacity: float
     ) -> float | None:
+        """Trigger the cooldown if possible, otherwise return the retry-after.
+
+        Args:
+            key (Any): The key for the cooldown.
+            period (float): The period for the cooldown.
+            capacity (float): The capacity for the cooldown.
+
+        Returns:
+            float | None: The retry-after in seconds, if any, else None.
+        """
+
         return self.get_bucket(key, period, capacity).update_rate_limit()
