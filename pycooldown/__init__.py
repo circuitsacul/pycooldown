@@ -22,15 +22,11 @@
 
 from __future__ import annotations
 
+from importlib.metadata import version
+
 from .fixed_mapping import FixedCooldown
 from .sliding_window import SlidingWindow
 
-from importlib.metadata import version
-
 __version__ = version(__name__)
 
-__all__ = (
-    "__version__",
-    "FixedCooldown",
-    "SlidingWindow",
-)
+__all__ = ("__version__", "FixedCooldown", "SlidingWindow")
