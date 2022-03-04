@@ -5,7 +5,7 @@ skip-magic-trailing-comma=true
 [tool.poetry]
 name = "pycooldown"
 version = "0"
-description = "A lightning fast cooldown/ratelimit implementation using cython."
+description = "A lightning fast cooldown/ratelimit implementation."
 authors = ["Circuit <circuitsacul@icloud.com>"]
 license = "MIT"
 readme = "README.md"
