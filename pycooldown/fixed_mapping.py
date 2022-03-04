@@ -35,34 +35,34 @@ class FixedCooldown(Generic[_K]):
         self.period = period
         self.capacity = capacity
 
-        self.old: dict[_K, SlidingWindow] = {}
-        self.cur: dict[_K, SlidingWindow] = {}
+        self._old: dict[_K, SlidingWindow] = {}
+        self._cur: dict[_K, SlidingWindow] = {}
 
-        self.last_del = time()
+        self.last_cycle = time()
 
     def __getitem__(self, key: _K) -> SlidingWindow:
-        if v := self.old.pop(key, None):
-            self.cur[key] = v
-        return self.cur[key]
+        if v := self._old.pop(key, None):
+            self._cur[key] = v
+        return self._cur[key]
 
     def __setitem__(self, key: _K, value: SlidingWindow) -> None:
-        self.cur[key] = value
+        self._cur[key] = value
 
     def get_bucket(self, key: _K) -> SlidingWindow:
         now = time()
-        if now > self.last_del + self.period:
-            self.last_del = now
+        if now > self.last_cycle + self.period:
+            self.last_cycle = now
 
-            self.old.clear()
-            cur = self.cur
-            self.cur = self.old
-            self.old = cur
+            self._old.clear()
+            cur = self._cur
+            self._cur = self._old
+            self._old = cur
 
         try:
             return self[key]
         except KeyError:
             b = SlidingWindow(self.period, self.capacity)
-            self.cur[key] = b
+            self._cur[key] = b
             return b
 
     def get_retry_after(self, key: _K) -> float:
