@@ -21,5 +21,5 @@
 # SOFTWARE.
 
 
-def test_tests():
-    assert True
+def test_import():
+    import pycooldown  # type: ignore  # noqa
