@@ -12,7 +12,6 @@ readme = "README.md"
 homepage = "https://github.com/TrigonDev/pycooldown"
 repository = "https://github.com/TrigonDev/pycooldown"
 keywords = ["cython", "ratelimit", "cooldown"]
-build = "build.py"
 
 [tool.poetry.dependencies]
 python = "^3.8,<3.11"
