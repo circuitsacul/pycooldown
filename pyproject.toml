@@ -15,7 +15,7 @@ keywords = ["cython", "ratelimit", "cooldown"]
 
 [tool.poetry.dependencies]
 python = "^3.8,<3.11"
-Cython = "^0.29.28"
+mypy-extensions = "^0.4.3"
 
 [tool.poetry.dev-dependencies]
 nox = "^2022.1.7"
