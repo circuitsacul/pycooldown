@@ -22,8 +22,9 @@
 
 from __future__ import annotations
 
-import pytest
 from math import isclose
+
+import pytest
 
 from pycooldown.sliding_window import SlidingWindow
 
