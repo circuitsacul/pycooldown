@@ -23,8 +23,8 @@
 from __future__ import annotations
 
 import pytest
-from pytest_mock import MockerFixture
 from mock import Mock
+from pytest_mock import MockerFixture
 
 from pycooldown.fixed_mapping import FixedCooldown
 
