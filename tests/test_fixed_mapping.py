@@ -118,19 +118,19 @@ def test_get_retry_after(mocker: MockerFixture) -> None:
     assert ret is bucket_mock.get_retry_after()
 
 
-def test_update_rate_limit(mocker: MockerFixture) -> None:
+def test_update_ratelimit(mocker: MockerFixture) -> None:
     mapping: FixedCooldown[str] = FixedCooldown(1, 1)
 
     # test that "get_bucket" is called
     gb_spy = mocker.spy(mapping, "get_bucket")
-    mapping.update_rate_limit("test")
+    mapping.update_ratelimit("test")
     gb_spy.assert_called_once_with("test")
 
-    # patch get_bucket, test that update_rate_limit is called and returned
+    # patch get_bucket, test that update_ratelimit is called and returned
     gb_mock = mocker.patch.object(mapping, "get_bucket")
     bucket_mock = Mock()
     gb_mock.return_value = bucket_mock
 
-    ret = mapping.update_rate_limit("test")
-    bucket_mock.update_rate_limit.assert_called_once_with()
-    assert ret is bucket_mock.update_rate_limit()
+    ret = mapping.update_ratelimit("test")
+    bucket_mock.update_ratelimit.assert_called_once_with()
+    assert ret is bucket_mock.update_ratelimit()
