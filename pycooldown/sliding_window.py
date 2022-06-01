@@ -74,7 +74,7 @@ class SlidingWindow:
 
         return 0.0
 
-    def update_rate_limit(self) -> float | None:
+    def update_ratelimit(self) -> float | None:
         """Trigger the cooldown if possible, otherwise return the retry-after.
 
         Args:

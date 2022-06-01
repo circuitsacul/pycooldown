@@ -93,7 +93,7 @@ class FixedCooldown(Generic[_K]):
 
         return self.get_bucket(key).get_retry_after()
 
-    def update_rate_limit(self, key: _K) -> float | None:
+    def update_ratelimit(self, key: _K) -> float | None:
         """Trigger the cooldown. If the cooldown cannot be triggered, return
         the retry-after.
 
@@ -104,4 +104,4 @@ class FixedCooldown(Generic[_K]):
             float | None: The retry-after in seconds, if any, else None.
         """
 
-        return self.get_bucket(key).update_rate_limit()
+        return self.get_bucket(key).update_ratelimit()

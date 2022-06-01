@@ -114,7 +114,7 @@ class FlexibleCooldown(Generic[_K]):
 
         return self.get_bucket(key, period, capacity).get_retry_after()
 
-    def update_rate_limit(
+    def update_ratelimit(
         self, key: _K, period: float, capacity: float
     ) -> float | None:
         """Trigger the cooldown if possible, otherwise return the retry-after.
@@ -128,4 +128,4 @@ class FlexibleCooldown(Generic[_K]):
             float | None: The retry-after in seconds, if any, else None.
         """
 
-        return self.get_bucket(key, period, capacity).update_rate_limit()
+        return self.get_bucket(key, period, capacity).update_ratelimit()
