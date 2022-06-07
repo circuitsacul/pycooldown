@@ -1,6 +1,6 @@
-# MIT License
+# MIT License (MIT)
 #
-# Copyright (c) 2022 TrigonDev
+# Copyright (c) 2015-present Rapptz
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ class SlidingWindow:
     """
 
     # NOTE: This sliding window implementation was copied from the Cooldown
-    # class in discord.py.
+    # class in Rapptz/discord.py.
 
     __slots__ = ("capacity", "period", "_window", "_tokens", "_last")
 
