@@ -55,7 +55,7 @@ class FlexibleCooldown(Generic[_K]):
         self._cur[key] = value
 
     def get_bucket(
-        self, key: _K, period: float, capacity: float
+        self, key: _K, capacity: float, period: float
     ) -> SlidingWindow:
         """Get or create a cooldown for a key.
 
@@ -93,13 +93,13 @@ class FlexibleCooldown(Generic[_K]):
                     "capacity value."
                 )
         except KeyError:
-            b = SlidingWindow(period, capacity)
+            b = SlidingWindow(capacity, period)
             self._cur[key] = b
 
         return b
 
     def get_retry_after(
-        self, key: _K, period: float, capacity: float
+        self, key: _K, capacity: float, period: float
     ) -> float:
         """Get the current retry-after without triggering the cooldown.
 
@@ -112,10 +112,10 @@ class FlexibleCooldown(Generic[_K]):
             float: The current retry-after in seconds.
         """
 
-        return self.get_bucket(key, period, capacity).get_retry_after()
+        return self.get_bucket(key, capacity, period).get_retry_after()
 
     def update_ratelimit(
-        self, key: _K, period: float, capacity: float
+        self, key: _K, capacity: float, period: float
     ) -> float | None:
         """Trigger the cooldown if possible, otherwise return the retry-after.
 
@@ -128,4 +128,4 @@ class FlexibleCooldown(Generic[_K]):
             float | None: The retry-after in seconds, if any, else None.
         """
 
-        return self.get_bucket(key, period, capacity).update_ratelimit()
+        return self.get_bucket(key, capacity, period).update_ratelimit()
