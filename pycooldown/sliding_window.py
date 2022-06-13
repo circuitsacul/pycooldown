@@ -38,7 +38,7 @@ class SlidingWindow:
 
     __slots__ = ("capacity", "period", "_window", "_tokens", "_last")
 
-    def __init__(self, period: float, capacity: float) -> None:
+    def __init__(self, capacity: float, period: float) -> None:
         self.capacity: int = int(capacity)
         self.period: float = float(period)
         self._window: float = 0.0

@@ -38,7 +38,7 @@ class FixedCooldown(Generic[_K]):
         capacity (float): The maximum number of units per timespan.
     """
 
-    def __init__(self, period: float, capacity: float) -> None:
+    def __init__(self, capacity: float, period: float) -> None:
         self.period = period
         self.capacity = capacity
 
@@ -77,7 +77,7 @@ class FixedCooldown(Generic[_K]):
         try:
             return self[key]
         except KeyError:
-            b = SlidingWindow(self.period, self.capacity)
+            b = SlidingWindow(self.capacity, self.period)
             self._cur[key] = b
             return b
 
