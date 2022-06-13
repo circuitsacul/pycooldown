@@ -31,7 +31,7 @@ from pycooldown.fixed_mapping import FixedCooldown
 
 @pytest.mark.parametrize(["period", "capacity"], [(1, 1), (1, 2), (2, 1)])
 def test_init(period: float, capacity: int) -> None:
-    mapping = FixedCooldown(period, capacity)
+    mapping = FixedCooldown(capacity, period)
     assert mapping.period == period
     assert mapping.capacity == capacity
     assert len(mapping._old) == 0

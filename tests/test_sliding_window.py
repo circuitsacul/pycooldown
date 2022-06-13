@@ -31,7 +31,7 @@ from pycooldown.sliding_window import SlidingWindow
 
 @pytest.mark.parametrize(["period", "capacity"], [(1, 1), (1, 2), (2, 1)])
 def test_init(period: float, capacity: int) -> None:
-    window = SlidingWindow(period, capacity)
+    window = SlidingWindow(capacity, period)
     assert window.period == period
     assert window.capacity == capacity
     assert window._window == 0.0
