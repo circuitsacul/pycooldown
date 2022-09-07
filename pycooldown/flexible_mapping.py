@@ -31,7 +31,8 @@ _K = TypeVar("_K")
 
 
 class FlexibleCooldown(Generic[_K]):
-    """A cooldown mapping where each key can have a different rate and capacity.
+    """A cooldown mapping where each key can have a different rate and
+    capacity.
 
     Args:
         max_period (float): The maximum value for a cooldown. The smaller this
