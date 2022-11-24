@@ -9,4 +9,4 @@ mypyc_paths = [
 
 
 def build(setup_kwargs):
-    setup_kwargs["ext"] = mypycify(mypyc_paths)
+    setup_kwargs["ext_modules"] = mypycify(mypyc_paths)

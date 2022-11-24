@@ -29,5 +29,9 @@ pytest-mock = "^3.7.0"
 mock = "^4.0.3"
 
 [build-system]
-requires = ["poetry-core>=1.0.0", "setuptools", "mypy"]
+requires = [
+    "poetry-core>=1.0.0",
+    "setuptools",
+    "mypy",
+]
 build-backend = "poetry.core.masonry.api"
