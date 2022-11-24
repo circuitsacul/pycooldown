@@ -57,7 +57,7 @@ jobs:
         run: |
           pip install poetry
           poetry version $(git describe --tags --abbrev=0)
-          poetry publish
+          poetry build
       - uses: actions/upload-artifact@v3
         with:
           name: dist
