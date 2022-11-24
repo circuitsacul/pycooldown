@@ -29,11 +29,10 @@ pytest-mock = "^3.7.0"
 mock = "^4.0.3"
 
 [tool.cibuildwheel.macos]
-archs = ["auto", "arm64"]
+archs = ["auto"]
 
 [tool.cibuildwheel.linux]
-# archs = ["auto", "aarch64", "ppc64le", "s390x"]
-archs = ["auto"]
+archs = ["auto", "aarch64", "ppc64le", "s390x"]
 
 [build-system]
 requires = [
