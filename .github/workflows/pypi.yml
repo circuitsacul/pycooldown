@@ -1,9 +1,9 @@
 name: pypi
 
 on:
-  push:
-  # release:
-  #   types: [published]
+  workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   build_wheels:
