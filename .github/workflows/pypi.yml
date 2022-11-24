@@ -30,7 +30,7 @@ jobs:
         uses: docker/setup-qemu-action@v2
         with:
           platforms: all
-      - uses: pypa/cibuildwheel@v2.11.1
+      - uses: pypa/cibuildwheel@v2.11.2
         env:
           CIBW_BUILD: "cp${{ matrix.python-version}}-*"
           # CIBW_ARCHS_MACOS: x86_64 arm64
