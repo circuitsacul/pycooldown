@@ -29,7 +29,8 @@ pytest-mock = "^3.7.0"
 mock = "^4.0.3"
 
 [tool.cibuildwheel.macos]
-archs = ["universal2"]
+archs = ["auto", "universal2"]
+test-skip = ["*universal2:arm64"]
 
 [tool.cibuildwheel.linux]
 archs = ["auto", "aarch64", "ppc64le", "s390x"]
