@@ -81,4 +81,4 @@ jobs:
           poetry config pypi-token.test-pypi $PYPI_TOKEN
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry version $(git describe --tags --abbrev=0)
-          poetry publish
+          poetry publish -r test-pypi
