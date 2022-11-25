@@ -1,4 +1,8 @@
-from mypyc.build import mypycify
+from __future__ import annotations
+
+from typing import Any
+
+from mypyc.build import mypycify  # type: ignore
 
 mypyc_paths = [
     "pycooldown/__init__.py",
@@ -8,5 +12,5 @@ mypyc_paths = [
 ]
 
 
-def build(setup_kwargs):
+def build(setup_kwargs: dict[str, Any]) -> None:
     setup_kwargs["ext_modules"] = mypycify(mypyc_paths)
