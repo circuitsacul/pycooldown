@@ -3,6 +3,9 @@ import nox
 
 @nox.session
 def pytest_and_mypy(session: nox.Session) -> None:
+    # Tell `build.py` that wheels shouldn't be built.
+    session.env["CI"] = "True"
+
     session.install("poetry")
     session.run("poetry", "install")
 

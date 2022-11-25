@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from typing import Any
 
 from mypyc.build import mypycify  # type: ignore
@@ -13,4 +14,7 @@ mypyc_paths = [
 
 
 def build(setup_kwargs: dict[str, Any]) -> None:
+    # Don't build wheels in CI.
+    if os.environ.get("CI", False):
+        return
     setup_kwargs["ext_modules"] = mypycify(mypyc_paths)
