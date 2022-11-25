@@ -11,7 +11,7 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/TrigonDev/pycooldown"
 repository = "https://github.com/TrigonDev/pycooldown"
-keywords = ["cython", "ratelimit", "cooldown"]
+keywords = ["mypyc", "ratelimit", "cooldown"]
 build = "build.py"
 
 [tool.poetry.dependencies]
