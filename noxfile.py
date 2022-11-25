@@ -6,7 +6,7 @@ def pytest_and_mypy(session: nox.Session) -> None:
     session.install("poetry")
     session.run("poetry", "install")
 
-    session.run("mypy", ".")
+    session.run("mypy", "pycooldown")
     session.run(
         "poetry",
         "run",
