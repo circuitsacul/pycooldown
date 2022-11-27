@@ -32,7 +32,7 @@ mock = "^4.0.3"
 archs = ["universal2"]
 
 [tool.cibuildwheel.linux]
-archs = ["auto", "aarch64", "ppc64le", "s390x"]
+archs = ["auto", "aarch64"]
 
 [build-system]
 requires = [
