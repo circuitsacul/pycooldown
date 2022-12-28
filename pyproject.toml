@@ -26,7 +26,7 @@ isort = "^5.10.1"
 flake8 = "^5.0.4"
 pytest-cov = "^4.0.0"
 pytest-mock = "^3.7.0"
-mock = "^4.0.3"
+mock = "^5.0.0"
 
 [tool.cibuildwheel.macos]
 archs = ["universal2"]
